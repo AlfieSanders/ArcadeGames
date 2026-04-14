@@ -10,12 +10,17 @@ public class EnemyScript : MonoBehaviour
     NavMeshAgent m_agent;
     private Animator m_animator;
     private Rigidbody m_rb;
+    private bool m_canBeHurt = true;
+    [SerializeField] private GameObject m_player;
+    private PlayerHealth m_playerhealth;
 
     private void Start()
     {
         m_animator = GetComponent<Animator>();
         m_agent = GetComponent<NavMeshAgent>();
         m_rb = GetComponent<Rigidbody>();
+        
+        
     }
 
     private void Update()
@@ -26,15 +31,20 @@ public class EnemyScript : MonoBehaviour
     }
     public void F_damage(float damageAmount)
     {
-        // take damage from health when fucntion is called
-        m_health -= damageAmount;
-
+       
+            // take damage from health when fucntion is called
+            m_health -= damageAmount;
+        
         // check if health is below zero
-        if(m_health <= 0)
+        if(m_health <= 0 && m_canBeHurt == true)
         {
+            
+            m_canBeHurt = false;
             // deactivate when health is below zero.
-            Debug.Log("ouch");
-            gameObject.SetActive(false);
+            
+            m_agent.isStopped = true;
+            m_animator.SetTrigger("Death");
+            
         }
         
     }
@@ -48,6 +58,15 @@ public class EnemyScript : MonoBehaviour
         }
 
 
+    }
+    public void F_Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void F_doDamage()
+    {
+        m_playerhealth.F_takeDamage(1);
     }
 
 }
