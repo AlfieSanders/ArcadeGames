@@ -4,27 +4,28 @@ public class TestRay : MonoBehaviour
 {
     private Ray m_ray;
     private RaycastHit m_hit;
-
-    private float m_gunDamage = 1f;
- 
     
+    private float m_gunDamage = 1f;
+
+    [SerializeField] private GameObject m_BloodEffect;
+    
+
     void Update()
     {
-        Vector2 mousePos = Input.mousePosition;
+        Vector3 mousePos = Input.mousePosition;
         m_ray = Camera.main.ScreenPointToRay(mousePos);
         if(Input.GetMouseButtonDown(0))
         {
-            if(Physics.Raycast(m_ray, out m_hit, 1000f))
+            if(Physics.Raycast(m_ray, out m_hit, 500f))
             {
-                EnemyScript health = m_hit.collider.GetComponent<EnemyScript>();
+                Debug.DrawLine(m_ray.origin, m_hit.transform.position, Color.red, 2.5f);
+                I_Connect capsule = m_hit.collider.GetComponent<I_Connect>();
 
 
-                //Debug.Log(m_hit.transform.gameObject.name);
-
-                if (health != null)
+                if (capsule != null)
                 {
-                    Debug.Log("bang");
-                    health.F_damage(m_gunDamage);
+                    capsule.onConnect();
+                    
                 }
             }
         }

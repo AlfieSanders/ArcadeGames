@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
     // the enemies health total
     public float m_health = 3f;
 
-    [SerializeField] private Transform m_target;
+    [SerializeField] private GameObject m_target;
     [SerializeField] private ScoreManager m_scoreManager;
     NavMeshAgent m_agent;
     private Animator m_animator;
@@ -24,13 +24,14 @@ public class EnemyScript : MonoBehaviour
         m_agent = GetComponent<NavMeshAgent>();
         m_rb = GetComponent<Rigidbody>();
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
+        m_target = GameObject.FindGameObjectWithTag("Player");
         
     }
 
     private void Update()
     {
         // on update set the destination to the player's location
-        m_agent.SetDestination(m_target.position);
+        m_agent.SetDestination(m_target.transform.position);
 
         
     }
@@ -60,8 +61,8 @@ public class EnemyScript : MonoBehaviour
         {
             I_Damageable  damageableEntity = other.GetComponent<I_Damageable>();
             i_storedInterfaceRef = damageableEntity;
-           
-            m_agent.speed = 0f;
+
+            m_agent.isStopped = true;
             m_animator.SetTrigger("Attack");
         }
 
