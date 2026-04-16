@@ -8,4 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JoystickScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 0cb16bb6cbb020e448d76fe44f627218
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 04a57099449100947aed0c04326b091d
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

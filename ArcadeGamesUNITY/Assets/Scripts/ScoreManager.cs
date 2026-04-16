@@ -1,9 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+
 public class ScoreManager : MonoBehaviour
 {
-    private int m_score = 0;
+    private int m_score;
     public TMPro.TextMeshProUGUI m_scoreText;
+
+
+    private void Start()
+    {
+        new HighScoreEntry(m_score);
+       
+    }
 
     private void Update()
     {
