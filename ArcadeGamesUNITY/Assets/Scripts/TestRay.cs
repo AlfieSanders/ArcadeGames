@@ -7,7 +7,6 @@ public class TestRay : MonoBehaviour
     
     private int m_ammo = 6;
 
-    [SerializeField] private GameObject m_BloodEffect;
     
 
     void Update()
