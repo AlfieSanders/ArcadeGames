@@ -14,10 +14,7 @@ public class ScoreManager : MonoBehaviour
 
     public TMPro.TextMeshProUGUI m_highScoreText;
 
-    private void Awake()
-    {
-        LoadScoreFromFile();
-    }
+ 
     private void Update()
     {
         m_scoreText.text = "Score: " + m_score;
@@ -35,14 +32,14 @@ public class ScoreManager : MonoBehaviour
         m_score += scoretoAdd;
     }
 
-    public void removeScore()
+    public void F_removeScore()
     {
         m_score = 0;
     }
 
     public void SaveScoresToFile()
     {
-        ScoreEntry scores = new ScoreEntry(m_score);
+        ScoreEntry scores = new ScoreEntry(m_score, m_highscore);
 
         string json = JsonUtility.ToJson(scores, true);
 
@@ -65,6 +62,14 @@ public class ScoreManager : MonoBehaviour
             if (scores != null)
             {
                 m_score = scores.Score;
+                m_highscore = scores.Highscore;
+
+                if (m_score > m_highscore)
+                {
+                    m_highscore = m_score;
+                }
+
+                
             }
         }
     }

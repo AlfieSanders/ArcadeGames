@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class ScoreEntry
 {
     public int Score;
-    
+    public int Highscore;
 
-    public ScoreEntry(int score)
+    public ScoreEntry(int score, int highscore)
     {
         Score = score;
-       
+        Highscore = highscore;
     }
 
 
