@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour, I_Damageable
 {
@@ -8,8 +9,12 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
     public GameObject m_gameOver;
     private bool m_canBeHurt = true;
 
+    public UnityEvent playerDeath;
+    
     private void Start()
     {
+        
+
         m_gameOver.SetActive(false);
     }
     private void Update()
@@ -27,6 +32,7 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
         {
             m_canBeHurt = false;
             m_gameOver.SetActive(true);
+            playerDeath.Invoke();
         }
     } 
         

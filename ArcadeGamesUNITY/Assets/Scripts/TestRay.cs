@@ -1,11 +1,12 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class TestRay : MonoBehaviour
 {
     private Ray m_ray;
     private RaycastHit m_hit;
     
     private int m_ammo = 6;
+    public TMPro.TextMeshProUGUI m_ammoText;
 
     
 
@@ -36,5 +37,20 @@ public class TestRay : MonoBehaviour
             {
             m_ammo = 6;
         }
+
+
+        m_ammoText.text = ("Ammo:" + m_ammo);
+
+        if(m_ammo <=0)
+        {
+            m_ammoText.text = "RELOAD";
+        }
+
+
     }
+
+
+
+
+    
 }

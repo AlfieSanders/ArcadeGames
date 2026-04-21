@@ -2,12 +2,17 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable] 
-public class HighScoreEntry
+public class ScoreEntry
 {
     public int Score;
+    
 
-    public HighScoreEntry(int score)
+    public ScoreEntry(int score)
     {
         Score = score;
+       
     }
+
+
+   
 }
