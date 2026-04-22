@@ -5,31 +5,34 @@ using System.IO;
 
 public class ScoreManager : MonoBehaviour
 {
-    private int m_localScore;
-    private int m_score;
-    private int m_highscore = 0;
+    
+    public int m_score;
+    public int m_highscore = 0;
 
-    public TMPro.TextMeshProUGUI m_scoreText;
+   
+
+    private ScoreHolder m_scoreHolder;
 
 
-    public TMPro.TextMeshProUGUI m_highScoreText;
 
- 
-    private void Update()
+    private void Awake()
     {
-        m_scoreText.text = "Score: " + m_score;
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("ScoreHolder");
 
-        if (m_highScoreText != null)
+        if(objs.Length > 1)
         {
-            m_highScoreText.text = "HighScore: " + m_highscore;
+            Destroy(this.gameObject);
         }
-        
-       
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    public void addToScore(int scoretoAdd)
+
+
+
+    public void F_addToScore(int m_scoreToAdd)
     {
-        m_score += scoretoAdd;
+        m_score += m_scoreToAdd;
     }
 
     public void F_removeScore()
@@ -39,7 +42,13 @@ public class ScoreManager : MonoBehaviour
 
     public void SaveScoresToFile()
     {
-        ScoreEntry scores = new ScoreEntry(m_score, m_highscore);
+        if(m_score > m_highscore)
+        {
+            m_highscore = m_score;
+        }
+      
+
+            ScoreEntry scores = new ScoreEntry(m_highscore);
 
         string json = JsonUtility.ToJson(scores, true);
 
@@ -59,18 +68,12 @@ public class ScoreManager : MonoBehaviour
 
             ScoreEntry scores = JsonUtility.FromJson<ScoreEntry>(json);
 
-            if (scores != null)
-            {
-                m_score = scores.Score;
-                m_highscore = scores.Highscore;
-
-                if (m_score > m_highscore)
-                {
-                    m_highscore = m_score;
-                }
-
+            
+            
                 
-            }
+                m_highscore = scores.Highscore; 
+                
+            
         }
     }
 }

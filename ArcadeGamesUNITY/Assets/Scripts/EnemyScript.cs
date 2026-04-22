@@ -3,8 +3,8 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    // the enemies health total
-    public float m_health = 3f;
+    
+    public float m_health;
 
     [SerializeField] private GameObject m_target;
     [SerializeField] private ScoreManager m_scoreManager;
@@ -25,7 +25,9 @@ public class EnemyScript : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
         m_target = GameObject.FindGameObjectWithTag("Player");
-        
+
+
+        m_health = Random.Range(3f, 6f);
     }
 
     private void Update()
@@ -47,7 +49,8 @@ public class EnemyScript : MonoBehaviour
             
             m_canBeHurt = false;
             // deactivate when health is below zero.
-            
+
+            m_scoreManager.F_addToScore(200);
             m_agent.isStopped = true;
             m_animator.SetTrigger("Death");
             
@@ -70,7 +73,7 @@ public class EnemyScript : MonoBehaviour
     }
     public void F_Die()
     {
-        m_scoreManager.addToScore(200);
+       
         Destroy(gameObject);
     }
 
