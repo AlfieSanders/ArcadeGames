@@ -10,7 +10,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private ScoreManager m_scoreManager;
     NavMeshAgent m_agent;
     private Animator m_animator;
-    private Rigidbody m_rb;
+    
     private bool m_canBeHurt = true;
     
     private I_Damageable i_storedInterfaceRef;
@@ -22,7 +22,7 @@ public class EnemyScript : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
         m_agent = GetComponent<NavMeshAgent>();
-        m_rb = GetComponent<Rigidbody>();
+       
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
         m_target = GameObject.FindGameObjectWithTag("Player");
 
