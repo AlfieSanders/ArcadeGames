@@ -1,19 +1,20 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
     
-    public float m_health;
+    private float m_health;
 
-    [SerializeField] private GameObject m_target;
-    [SerializeField] private ScoreManager m_scoreManager;
-    NavMeshAgent m_agent;
-    private Animator m_animator;
+    private GameObject m_target;
+    private ScoreManager m_scoreManager;
+    public NavMeshAgent m_agent;
+    public Animator m_animator;
     
     private bool m_canBeHurt = true;
     
-    private I_Damageable i_storedInterfaceRef;
+    
 
 
     
@@ -22,7 +23,7 @@ public class EnemyScript : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
         m_agent = GetComponent<NavMeshAgent>();
-       
+          
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
         m_target = GameObject.FindGameObjectWithTag("Player");
 
@@ -58,34 +59,10 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") == true)
-        {
-            I_Damageable  damageableEntity = other.GetComponent<I_Damageable>();
-            i_storedInterfaceRef = damageableEntity;
-
-            m_agent.isStopped = true;
-            m_animator.SetTrigger("Attack");
-        }
-
-
-    }
+   
     public void F_Die()
     {
        
         Destroy(gameObject);
-    }
-
-    public void F_doDamage()
-    {
-        if (i_storedInterfaceRef != null)
-        {
-            i_storedInterfaceRef.TakeDamage(1);
-        }
-        
-
-
-    }
-
+    } 
 }

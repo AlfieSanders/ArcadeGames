@@ -284,7 +284,7 @@ PrefabInstance:
       addedObject: {fileID: 3837002244873837577}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6350886408021007448}
+      addedObject: {fileID: -5532329798431406084}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8568169189332102017}
@@ -320,7 +320,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 1
@@ -355,7 +355,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3855616958247253969}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.51
+  m_Radius: 1
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -389,7 +389,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0097017, y: 5.3568754, z: 6.9554815}
   m_Center: {x: 0.0048508644, y: 2.1784377, z: 4.1600685}
---- !u!114 &6350886408021007448
+--- !u!114 &-5532329798431406084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,12 +398,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3855616958247253969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9c340a94b5d6ff4eb77c5adcecf4d6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6acb82d5c8b7e824ca749043d80d3f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 3
-  m_target: {fileID: 0}
-  m_scoreManager: {fileID: 0}
 --- !u!1 &3910688528864728202 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
