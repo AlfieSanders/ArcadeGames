@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
     private void Start()
     {
         
-        m_scoreManager.F_removeScore();
+        //m_scoreManager.F_removeScore();
         m_gameOver.SetActive(false);
     }
     private void Update()

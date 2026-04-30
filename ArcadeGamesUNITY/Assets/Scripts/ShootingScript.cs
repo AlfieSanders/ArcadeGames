@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class TestRay : MonoBehaviour
+public class ShootingScript : MonoBehaviour
 {
     private Ray m_ray;
     private RaycastHit m_hit;

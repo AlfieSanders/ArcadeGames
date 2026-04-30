@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class EnemyThrow : EnemyScript
 {
+
+    public Transform m_throwPoint;
+    public Rigidbody m_projectile;
+
+    
+
+    public float m_speed;
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") == true)
@@ -14,7 +23,13 @@ public class EnemyThrow : EnemyScript
 
     public void F_throwProjectile()
     {
-        Debug.Log("Brick!!");
+        Rigidbody brick = Instantiate(m_projectile,m_throwPoint.position,m_throwPoint.rotation);
+
+        Vector3 dir = m_target.transform.position - transform.position;
+
+        dir.y -= 2;
+
+        brick.linearVelocity = dir * m_speed;
     }
 
 }

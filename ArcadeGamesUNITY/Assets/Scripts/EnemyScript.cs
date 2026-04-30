@@ -7,7 +7,7 @@ public class EnemyScript : MonoBehaviour
     
     private float m_health;
 
-    private GameObject m_target;
+    protected GameObject m_target;
     private ScoreManager m_scoreManager;
     public NavMeshAgent m_agent;
     public Animator m_animator;
