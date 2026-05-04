@@ -5,7 +5,7 @@ public class ShootingScript : MonoBehaviour
     private Ray m_ray;
     private RaycastHit m_hit;
     
-    private int m_ammo = 6;
+    private int m_ammo = 12;
     public TMPro.TextMeshProUGUI m_ammoText;
 
     
@@ -35,7 +35,7 @@ public class ShootingScript : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1))
             {
-            m_ammo = 6;
+            m_ammo = 12;
         }
 
 

@@ -44,6 +44,18 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9821231
       objectReference: {fileID: 0}
@@ -82,6 +94,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8183481454299698827, guid: e70df166d213bf84bb5df528fcd0bf3b, type: 3}
       propertyPath: m_Layer
@@ -356,7 +372,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 2
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -387,8 +403,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0097017, y: 5.3568754, z: 6.9554815}
-  m_Center: {x: 0.0048508644, y: 2.1784377, z: 4.1600685}
+  m_Size: {x: 1.0097017, y: 5.3568754, z: 8.884306}
+  m_Center: {x: 0.004850865, y: 2.1784377, z: 5.1244807}
 --- !u!114 &-5532329798431406084
 MonoBehaviour:
   m_ObjectHideFlags: 0

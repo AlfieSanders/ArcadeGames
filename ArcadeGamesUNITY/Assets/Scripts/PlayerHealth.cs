@@ -13,8 +13,14 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
 
     public UnityEvent playerDeath;
 
+    public Animator m_hurtFlash;
+    
+    private Animator m_cameraAnim;
+
     private void Awake()
     {
+       
+        m_cameraAnim = Camera.main.GetComponent<Animator>();
         
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
     }
@@ -32,7 +38,11 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
     {
         if(m_canBeHurt == true)
         {
+            m_cameraAnim.SetTrigger("IsHurt");
+            m_hurtFlash.SetTrigger("IsHurt");
             m_maxHealth -= m_damage;
+            
+
         }
         
         if (m_maxHealth <= 0)
