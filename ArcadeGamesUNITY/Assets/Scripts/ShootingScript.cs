@@ -8,7 +8,17 @@ public class ShootingScript : MonoBehaviour
     private int m_ammo = 12;
     public TMPro.TextMeshProUGUI m_ammoText;
 
-    
+    private AudioSource m_audioSource;
+
+    public AudioClip m_gunShot;
+    public AudioClip m_gunShotDry;
+    public AudioClip m_gunReload;
+
+    private void Start()
+    {
+        m_audioSource = GetComponent<AudioSource>();
+    }
+
 
     void Update()
     {
@@ -16,7 +26,9 @@ public class ShootingScript : MonoBehaviour
         m_ray = Camera.main.ScreenPointToRay(mousePos);
         if(Input.GetMouseButtonDown(0) && m_ammo != 0)
         {
+            
             m_ammo--;
+            m_audioSource.PlayOneShot(m_gunShot, 1f);
             if(Physics.Raycast(m_ray, out m_hit, 500f))
             {
                 Debug.DrawLine(m_ray.origin, m_hit.transform.position, Color.red, 4f);
@@ -33,8 +45,16 @@ public class ShootingScript : MonoBehaviour
             }
         }
 
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButton(0) && m_ammo == 0)
+        {
+
+            F_GunEmpty();
+
+        }
+
+        if(Input.GetMouseButtonDown(1) && m_ammo != 12)
             {
+            m_audioSource.PlayOneShot(m_gunReload, 1f);
             m_ammo = 12;
         }
 
@@ -50,7 +70,11 @@ public class ShootingScript : MonoBehaviour
     }
 
 
-
+    private void F_GunEmpty()
+    {
+        m_audioSource.PlayOneShot(m_gunShotDry, 1f);
+        
+    }
 
     
 }

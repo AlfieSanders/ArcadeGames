@@ -10,6 +10,8 @@ public class CivillianScript : MonoBehaviour
     NavMeshAgent m_agent;
     private Animator m_animator;
     private bool m_canBeHurt = true;
+    private AudioSource m_audioSource;
+    public AudioClip m_scream;
    
     void Start()
     {
@@ -18,6 +20,7 @@ public class CivillianScript : MonoBehaviour
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
         m_target = GameObject.FindGameObjectWithTag("Safety");
         m_playerHealth = FindFirstObjectByType<PlayerHealth>();
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -42,6 +45,7 @@ public class CivillianScript : MonoBehaviour
 
         if(m_health <=0 && m_canBeHurt == true)
         {
+            m_audioSource.PlayOneShot(m_scream, 1f);
             m_canBeHurt = false;
             m_agent.isStopped = true;
             m_playerHealth.TakeDamage(1);

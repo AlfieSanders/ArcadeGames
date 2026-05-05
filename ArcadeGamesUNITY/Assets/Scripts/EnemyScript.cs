@@ -13,22 +13,24 @@ public class EnemyScript : MonoBehaviour
     public Animator m_animator;
     
     private bool m_canBeHurt = true;
-    
-    
+    public AudioSource m_audioSource;
+
+    public AudioClip m_injuredNoise;
+    public AudioClip m_dieNoise;
+    public AudioClip m_attackNoise;
 
 
-    
+
+
 
     private void Start()
     {
         m_animator = GetComponent<Animator>();
-        m_agent = GetComponent<NavMeshAgent>();
-          
+        m_agent = GetComponent<NavMeshAgent>();        
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
         m_target = GameObject.FindGameObjectWithTag("Player");
-
-
         m_health = Random.Range(3f, 6f);
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -43,6 +45,7 @@ public class EnemyScript : MonoBehaviour
        
             // take damage from health when fucntion is called
             m_health -= damageAmount;
+        m_audioSource.PlayOneShot(m_injuredNoise, 1f);
         
         // check if health is below zero
         if(m_health <= 0 && m_canBeHurt == true)
@@ -50,7 +53,7 @@ public class EnemyScript : MonoBehaviour
             
             m_canBeHurt = false;
             // deactivate when health is below zero.
-
+            m_audioSource.PlayOneShot(m_dieNoise, 1f);
             m_scoreManager.F_addToScore(200);
             m_agent.isStopped = true;
             m_animator.SetTrigger("Death");

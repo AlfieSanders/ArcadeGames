@@ -23,6 +23,7 @@ public class EnemyThrow : EnemyScript
 
     public void F_throwProjectile()
     {
+        m_audioSource.PlayOneShot(m_attackNoise, 1f);
         Rigidbody brick = Instantiate(m_projectile,m_throwPoint.position,m_throwPoint.rotation);
 
         Vector3 dir = m_target.transform.position - transform.position;

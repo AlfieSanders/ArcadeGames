@@ -8,14 +8,12 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
     public TMPro.TextMeshProUGUI m_healthText;
     public GameObject m_gameOver;
     private bool m_canBeHurt = true;
-
     private ScoreManager m_scoreManager;
-
     public UnityEvent playerDeath;
-
-    public Animator m_hurtFlash;
-    
+    public Animator m_hurtFlash;   
     private Animator m_cameraAnim;
+    private AudioSource m_audioSource;
+    public AudioClip m_gasp;
 
     private void Awake()
     {
@@ -26,7 +24,7 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
     }
     private void Start()
     {
-        
+        m_audioSource = GetComponent<AudioSource>();
         //m_scoreManager.F_removeScore();
         m_gameOver.SetActive(false);
     }
@@ -38,6 +36,7 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
     {
         if(m_canBeHurt == true)
         {
+            m_audioSource.PlayOneShot(m_gasp, 1f);
             m_cameraAnim.SetTrigger("IsHurt");
             m_hurtFlash.SetTrigger("IsHurt");
             m_maxHealth -= m_damage;

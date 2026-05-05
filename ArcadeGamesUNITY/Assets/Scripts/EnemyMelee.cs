@@ -17,6 +17,7 @@ public class EnemyMelee : EnemyScript
     }
     public void F_doDamage()
     {
+        m_audioSource.PlayOneShot(m_attackNoise, 1f);
         if (i_storedInterfaceRef != null)
         {
             i_storedInterfaceRef.TakeDamage(1);
