@@ -9,7 +9,8 @@ public class ShootingScript : MonoBehaviour
     public TMPro.TextMeshProUGUI m_ammoText;
 
     private AudioSource m_audioSource;
-
+    private PlayerHealth m_playerHealth;
+    private float m_health;
     public AudioClip m_gunShot;
     public AudioClip m_gunShotDry;
     public AudioClip m_gunReload;
@@ -17,14 +18,20 @@ public class ShootingScript : MonoBehaviour
     private void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
+        m_playerHealth = GetComponent<PlayerHealth>();
+       
     }
 
 
     void Update()
     {
+        m_health = m_playerHealth.m_maxHealth;
+
+
+
         Vector3 mousePos = Input.mousePosition;
         m_ray = Camera.main.ScreenPointToRay(mousePos);
-        if(Input.GetMouseButtonDown(0) && m_ammo != 0)
+        if(Input.GetMouseButtonDown(0) && m_ammo != 0  && m_health !=0)
         {
             
             m_ammo--;

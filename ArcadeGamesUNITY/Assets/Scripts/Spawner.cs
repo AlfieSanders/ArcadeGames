@@ -14,15 +14,15 @@ public class Spawner : MonoBehaviour
         
         
         F_spawnEnemy();
-        StartCoroutine("F_spawnerEnemies");
-        StartCoroutine("F_spawnerCIV");
+        StartCoroutine("I_spawnerEnemies");
+        
 
     }
-    IEnumerator F_spawnerEnemies()
+    IEnumerator I_spawnerEnemies()
     {
         yield return new WaitForSeconds(m_spawnTime);
         F_spawnEnemy();
-        StartCoroutine("F_spawnerEnemies");
+        StartCoroutine("I_spawnerEnemies");
 
     }
 

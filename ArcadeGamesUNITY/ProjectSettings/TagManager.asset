@@ -9,6 +9,7 @@ TagManager:
   - SceneControl
   - ScoreHolder
   - Safety
+  - CreditHolder
   layers:
   - Default
   - TransparentFX

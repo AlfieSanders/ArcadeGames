@@ -6,9 +6,9 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
 {
     public int m_maxHealth = 5;
     public TMPro.TextMeshProUGUI m_healthText;
-    public GameObject m_gameOver;
+   
     private bool m_canBeHurt = true;
-    private ScoreManager m_scoreManager;
+    
     public UnityEvent playerDeath;
     public Animator m_hurtFlash;   
     private Animator m_cameraAnim;
@@ -20,13 +20,13 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
        
         m_cameraAnim = Camera.main.GetComponent<Animator>();
         
-        m_scoreManager = FindFirstObjectByType<ScoreManager>();
+        
     }
     private void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
         //m_scoreManager.F_removeScore();
-        m_gameOver.SetActive(false);
+        
     }
     private void Update()
     {
@@ -47,8 +47,7 @@ public class PlayerHealth : MonoBehaviour, I_Damageable
         if (m_maxHealth <= 0)
         {
             m_canBeHurt = false;
-            m_gameOver.SetActive(true);
-            m_scoreManager.SaveScoresToFile();
+            
             playerDeath.Invoke();
         }
     } 
