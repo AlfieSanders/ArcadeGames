@@ -11,10 +11,12 @@ public class EnemyScript : MonoBehaviour
     private ScoreManager m_scoreManager;
     public NavMeshAgent m_agent;
     public Animator m_animator;
-    
-    private bool m_canBeHurt = true;
-    public AudioSource m_audioSource;
 
+    // stops the enemy from being damaged during death animation 
+    private bool m_canBeHurt = true;
+
+    // audio components 
+    public AudioSource m_audioSource;
     public AudioClip m_injuredNoise;
     public AudioClip m_dieNoise;
     public AudioClip m_attackNoise;
@@ -25,10 +27,12 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
+        // intialisation asigns all variables 
         m_animator = GetComponent<Animator>();
         m_agent = GetComponent<NavMeshAgent>();        
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
         m_target = GameObject.FindGameObjectWithTag("Player");
+        // health is a random ammount to vary gameplay
         m_health = Random.Range(3f, 6f);
         m_audioSource = GetComponent<AudioSource>();
     }
@@ -52,7 +56,7 @@ public class EnemyScript : MonoBehaviour
         {
             
             m_canBeHurt = false;
-            // deactivate when health is below zero.
+            // deactivate when health is below zero, play audioclip, and add to the score. 
             m_audioSource.PlayOneShot(m_dieNoise, 1f);
             m_scoreManager.F_addToScore(200);
             m_agent.isStopped = true;
@@ -64,8 +68,7 @@ public class EnemyScript : MonoBehaviour
 
    
     public void F_Die()
-    {
-       
+    {    
         Destroy(gameObject);
     } 
 }

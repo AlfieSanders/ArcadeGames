@@ -4,19 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 
 public class ScoreManager : MonoBehaviour
-{
-    
+{   
+    // score variables
     public int m_score;
     public int m_highscore = 0;
 
-   
-
-    private ScoreHolder m_scoreHolder;
-
-
-
     private void Awake()
     {
+        // single instance class, destroys matching objects to avoid conflicts
         GameObject[] objs = GameObject.FindGameObjectsWithTag("ScoreHolder");
 
         if(objs.Length > 1)
@@ -40,6 +35,7 @@ public class ScoreManager : MonoBehaviour
         m_score = 0;
     }
 
+    // score saving using Json files- follows tutorial shown in lesson
     public void SaveScoresToFile()
     {
         if(m_score > m_highscore)
@@ -47,12 +43,12 @@ public class ScoreManager : MonoBehaviour
             m_highscore = m_score;
         }
       
-
-            ScoreEntry scores = new ScoreEntry(m_highscore);
+        ScoreEntry scores = new ScoreEntry(m_highscore);
 
         string json = JsonUtility.ToJson(scores, true);
-
-        string filepath = Path.Combine(Application.persistentDataPath, "AJSCurrentscore.json");
+        
+        // filepath uses my own intitials to make it unique- avoid conflicting Json files if project is loaded onto the same machine as another project
+        string filepath = Path.Combine(Application.persistentDataPath, "AJSCurrentscore.json");    
 
         File.WriteAllText(filepath, json);
     }
@@ -67,13 +63,8 @@ public class ScoreManager : MonoBehaviour
             string json = File.ReadAllText(filepath);
 
             ScoreEntry scores = JsonUtility.FromJson<ScoreEntry>(json);
-
-            
-            
-                
-                m_highscore = scores.Highscore; 
-                
-            
+                              
+                m_highscore = scores.Highscore;                           
         }
     }
 }

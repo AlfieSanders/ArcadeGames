@@ -10,6 +10,7 @@ TagManager:
   - ScoreHolder
   - Safety
   - CreditHolder
+  - GlassBreak
   layers:
   - Default
   - TransparentFX
